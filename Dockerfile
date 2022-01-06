@@ -1,5 +1,6 @@
-FROM python:3.6
+FROM python:3.8
+RUN pip install pipenv
 WORKDIR /opt/app
 COPY . .
-CMD ["python3", "main.py"]
+RUN pipenv install --system --deploy
 
