@@ -10,7 +10,7 @@ from logic.engine import read_data
 
 def print_hi(url):
     with open("log.txt", "a") as of:
-        of.write(read_data(url).json()["message"][0])
+        of.write(read_data(url).json()["message"][0] + "\n")
     time.sleep(60)
 
 
