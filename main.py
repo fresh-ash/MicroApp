@@ -9,13 +9,18 @@ from logic.engine import read_data
 
 
 def print_hi(url):
-    with open("log.txt", "a") as of:
-        of.write(read_data(url).json()["message"][0] + "\n")
+    response = read_data(url)
+    if response.status_code != 200:
+        with open("errors.txt", "a") as of:
+            of.write(response.raw)
+    else:
+        with open("log.txt", "a") as of:
+            of.write(response.json()["message"][0] + "\n")
     time.sleep(60)
 
 
 if __name__ == '__main__':
-    while(True):
+    while True:
         print_hi("https://game-of-words.herokuapp.com/gameofwords/adj&noun/?limit=1")
 
 
