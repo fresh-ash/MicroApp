@@ -5,18 +5,20 @@
 
 import time
 
+from requests import exceptions
+
 from logic.engine import read_data
 
 
 def print_hi(url, params):
-    response = read_data(url, params=params)
-    if response.status_code != 200:
-        print(response.raw)
+    try:
+        response = read_data(url, params=params)
+        if response.status_code == 200:
+            with open("log.txt", "a") as of:
+                of.write(response.json()["message"][0] + "\n")
+    except exceptions.RequestException as error:
         with open("errors.txt", "a") as of:
             of.write(response.raw)
-    else:
-        with open("log.txt", "a") as of:
-            of.write(response.json()["message"][0] + "\n")
     time.sleep(60)
 
 
