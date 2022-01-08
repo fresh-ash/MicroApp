@@ -8,9 +8,10 @@ import time
 from logic.engine import read_data
 
 
-def print_hi(url):
-    response = read_data(url)
+def print_hi(url, params):
+    response = read_data(url, params=params)
     if response.status_code != 200:
+        print(response.raw)
         with open("errors.txt", "a") as of:
             of.write(response.raw)
     else:
@@ -21,6 +22,6 @@ def print_hi(url):
 
 if __name__ == '__main__':
     while True:
-        print_hi("https://game-of-words.herokuapp.com/gameofwords/adj&noun/?limit=1")
+        print_hi("https://game-of-words.herokuapp.com/gameofwords/adj&noun", params={'limit': 1})
 
 
