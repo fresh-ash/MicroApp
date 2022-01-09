@@ -18,7 +18,7 @@ def print_hi(url, params):
                 of.write(response.json()["message"][0] + "\n")
     except exceptions.RequestException as error:
         with open("errors.txt", "a") as of:
-            of.write(response.raw)
+            of.write("Error!")
     time.sleep(60)
 
 
