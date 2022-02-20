@@ -1,6 +1,8 @@
-FROM python:3.8-alpine
-RUN pip install pipenv
+FROM nikolaik/python-nodejs:latest
+
+RUN pip install pipenv \
+    && npm install -g nodemon
+
 WORKDIR /opt/app
 COPY . .
 RUN pipenv install --system --deploy
-CMD ["python3", "main.py"]
