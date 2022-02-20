@@ -1,0 +1,12 @@
+version: "3"
+
+services:
+  python:
+    container_name: autorestart-test
+    build:
+      context: .
+    image: nikolaik/python-nodejs:latest
+    command: nodemon main.py
+    working_dir: /app
+    volumes:
+      - ./:/app/
